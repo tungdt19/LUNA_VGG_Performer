@@ -1,38 +1,33 @@
-# =============================
-# CONFIG FOR LUNA25 HYBRID MODEL
-# =============================
-
 DATA:
-  ROOT_DIR: "/path/to/luna25_nodule_blocks/"
-  IMAGE_DIR: "image"
-  METADATA_DIR: "metadata"
-  CSV_PATH: "metadata.csv"
-  NUM_SLICES: 3           # K-slices for hybrid 2D model
-  IMAGE_SIZE: 128         # Resize H=W
-  NORMALIZE: true
+  ROOT_DIR: "/path/to/nodule_blocks"     # thư mục chứa images + metadata
+  IMAGE_DIR: "images"                     # thư mục con chứa .npy images
+  CSV_PATH: "train_metadata.csv"          # file csv bạn đã tạo
+  NUM_SLICES: 3
+  IMAGE_SIZE: 128
   CLIP_MIN: -1000
   CLIP_MAX: 400
-
-MODEL:
-  BACKBONE: "vgg16"        # vgg16 or efficientnet_b0
-  PRETRAINED: true
-  FEATURE_DIM: 512
-  PROJECT_DIM: 256         # After first FC
-  NUM_TOKENS: 8
-  TOKEN_DIM: 32            # Should satisfy PROJECT_DIM = NUM_TOKENS * TOKEN_DIM
-  DROPOUT: 0.4
+  NORMALIZE: true
 
 TRAIN:
-  BATCH_SIZE: 32
-  EPOCHS: 50
-  LR: 0.0001
-  WEIGHT_DECAY: 0.001
-  OPTIMIZER: "adamw"
-  SCHEDULER: "cosine"
-  EARLY_STOPPING_PATIENCE: 8
+  BATCH_SIZE: 16
+  NUM_WORKERS: 4
+  LR: 1e-4
+  WEIGHT_DECAY: 1e-3
+  EPOCHS: 20
   MIXED_PRECISION: true
 
-AUGMENTATIONS:
-  HFLIP: true
-  VFLIP: true
-  ROTA
+CV:
+  NUM_FOLDS: 5
+  GROUP_KEY: "patient_id"
+
+MODEL:
+  PRETRAINED: true
+  PROJECT_DIM: 256
+  NUM_TOKENS: 8
+  TOKEN_DIM: 32
+  NUM_HEADS: 4
+  PERFORMER_DEPTH: 1
+  DROPOUT: 0.4
+
+CHECKPOINT:
+  DIR: "checkpoints"
