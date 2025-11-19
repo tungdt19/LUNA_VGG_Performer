@@ -1,0 +1,38 @@
+# =============================
+# CONFIG FOR LUNA25 HYBRID MODEL
+# =============================
+
+DATA:
+  ROOT_DIR: "/path/to/luna25_nodule_blocks/"
+  IMAGE_DIR: "image"
+  METADATA_DIR: "metadata"
+  CSV_PATH: "metadata.csv"
+  NUM_SLICES: 3           # K-slices for hybrid 2D model
+  IMAGE_SIZE: 128         # Resize H=W
+  NORMALIZE: true
+  CLIP_MIN: -1000
+  CLIP_MAX: 400
+
+MODEL:
+  BACKBONE: "vgg16"        # vgg16 or efficientnet_b0
+  PRETRAINED: true
+  FEATURE_DIM: 512
+  PROJECT_DIM: 256         # After first FC
+  NUM_TOKENS: 8
+  TOKEN_DIM: 32            # Should satisfy PROJECT_DIM = NUM_TOKENS * TOKEN_DIM
+  DROPOUT: 0.4
+
+TRAIN:
+  BATCH_SIZE: 32
+  EPOCHS: 50
+  LR: 0.0001
+  WEIGHT_DECAY: 0.001
+  OPTIMIZER: "adamw"
+  SCHEDULER: "cosine"
+  EARLY_STOPPING_PATIENCE: 8
+  MIXED_PRECISION: true
+
+AUGMENTATIONS:
+  HFLIP: true
+  VFLIP: true
+  ROTA
