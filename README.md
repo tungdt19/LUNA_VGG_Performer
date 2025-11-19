@@ -10,9 +10,8 @@ Kiến trúc chính gồm:
 - **FastAPI Inference Server**
 - **Docker Deployment**
 
-Dự án được thiết kế để tham gia **Task 1 của LUNA25 Challenge**, nơi mô hình phân loại nodule lành tính/ác tính dựa trên nodule block 3D được cắt sẵn.
+Dự án được thiết kế để tham gia **LUNA25 Challenge** với mô hình phân loại nodule lành tính/ác tính dựa trên nodule block 3D được cắt sẵn.
 
 ---
 
-# 📂 Project Structure
 
